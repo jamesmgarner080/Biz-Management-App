@@ -1,0 +1,20 @@
+34:        document.getElementById('permissionsNav').style.display = 'block';
+36:        // Managers see most features except permissions
+41:        document.getElementById('permissionsNav').style.display = 'none';
+48:        document.getElementById('permissionsNav').style.display = 'none';
+332:        case 'permissions':
+880:    // Load available permissions for admin
+883:            const permissions = await apiRequest('/permissions/available');
+885:            checkboxContainer.innerHTML = permissions.map(p => `
+893:            console.error('Error loading permissions:', error);
+915:            // Load user's custom permissions
+917:                const permData = await apiRequest(`/permissions/user/${userId}`);
+920:                // Check the boxes for custom permissions
+964:    // Get selected custom permissions (admin only)
+986:            // Update permissions if admin
+988:                // Get current custom permissions
+989:                const permData = await apiRequest(`/permissions/user/${userId}`);
+992:                // Revoke permissions that were unchecked
+995:                    await apiRequest('/permissions/revoke', {
+1001:                // Grant new permissions
+1004:                    await apiRequest('/permissions/grant', {

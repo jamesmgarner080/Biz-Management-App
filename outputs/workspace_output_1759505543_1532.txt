@@ -1,0 +1,3 @@
+34:        document.getElementById('permissionsNav').style.display = 'block';
+41:        document.getElementById('permissionsNav').style.display = 'none';
+48:        document.getElementById('permissionsNav').style.display = 'none';

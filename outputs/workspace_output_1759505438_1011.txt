@@ -1,11 +1,11 @@
 const express = require('express');
-const { authenticateToken, requireAdmin, requireManagement } = require('../auth');
+const { authenticateToken, requireAdmin } = require('../auth');
 
 function createPermissionRoutes(db) {
     const router = express.Router();
     
     // Get all available permissions
-    router.get('/available', authenticateToken, requireManagement, (req, res) => {
+    router.get('/available', authenticateToken, requireAdmin, (req, res) => {
         try {
             const permissions = db.getAllPermissions();
             res.json(permissions);
@@ -20,9 +20,8 @@ function createPermissionRoutes(db) {
         try {
             const { userId } = req.params;
             
-            // Users can only view their own permissions unless they're admin or manager
-            const managementRoles = ['admin', 'manager'];
-            if (!managementRoles.includes(req.user.role) && parseInt(userId) !== req.user.id) {
+            // Users can only view their own permissions unless they're admin
+            if (req.user.role !== 'admin' && parseInt(userId) !== req.user.id) {
                 return res.status(403).json({ error: 'Access denied' });
             }
             
@@ -40,7 +39,7 @@ function createPermissionRoutes(db) {
     });
     
     // Get role permissions
-    router.get('/role/:role', authenticateToken, requireManagement, (req, res) => {
+    router.get('/role/:role', authenticateToken, requireAdmin, (req, res) => {
         try {
             const { role } = req.params;
             const permissions = db.getRolePermissions(role);
@@ -52,7 +51,7 @@ function createPermissionRoutes(db) {
     });
     
     // Grant permission to user
-    router.post('/grant', authenticateToken, requireManagement, (req, res) => {
+    router.post('/grant', authenticateToken, requireAdmin, (req, res) => {
         try {
             const { userId, permission } = req.body;
             
@@ -74,7 +73,7 @@ function createPermissionRoutes(db) {
     });
     
     // Revoke permission from user
-    router.post('/revoke', authenticateToken, requireManagement, (req, res) => {
+    router.post('/revoke', authenticateToken, requireAdmin, (req, res) => {
         try {
             const { userId, permission } = req.body;
             
@@ -96,7 +95,7 @@ function createPermissionRoutes(db) {
     });
     
     // Bulk grant permissions
-    router.post('/bulk-grant', authenticateToken, requireManagement, (req, res) => {
+    router.post('/bulk-grant', authenticateToken, requireAdmin, (req, res) => {
         try {
             const { userId, permissions } = req.body;
             
@@ -120,7 +119,7 @@ function createPermissionRoutes(db) {
     });
     
     // Bulk revoke permissions
-    router.post('/bulk-revoke', authenticateToken, requireManagement, (req, res) => {
+    router.post('/bulk-revoke', authenticateToken, requireAdmin, (req, res) => {
         try {
             const { userId, permissions } = req.body;
             

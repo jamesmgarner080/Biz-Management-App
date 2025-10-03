@@ -1,0 +1,4 @@
+22:function requireManagement(req, res, next) {
+30:function requireAdmin(req, res, next) {
+64:    requireManagement,
+65:    requireAdmin,

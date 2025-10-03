@@ -1,0 +1,73 @@
+async function loadPermissionsView() {
+    try {
+        // Load users for dropdown
+        const users = await apiRequest('/users');
+        const select = document.getElementById('permissionUserId');
+        select.innerHTML = '<option value="">Select a user</option>' +
+            users.map(user => `<option value="${user.id}">${escapeHtml(user.full_name)} (${user.role})</option>`).join('');
+        
+        // Load available permissions
+        const permissions = await apiRequest('/permissions/available');
+        window.availablePermissions = permissions;
+    } catch (error) {
+        console.error('Error loading permissions view:', error);
+        showToast('Failed to load permissions', 'error');
+    }
+}
+
+async function loadUserPermissions() {
+    const userId = document.getElementById('permissionUserId').value;
+    
+    if (!userId) {
+        document.getElementById('permissionsContent').style.display = 'none';
+        return;
+    }
+    
+    try {
+        const data = await apiRequest(`/permissions/user/${userId}`);
+        const user = await apiRequest(`/users/${userId}`);
+        
+        // Show permissions content
+        document.getElementById('permissionsContent').style.display = 'block';
+        
+        // Get role permissions
+        const rolePermissions = await apiRequest(`/permissions/role/${user.role}`);
+        
+        // Render role permissions
+        const roleList = document.getElementById('rolePermissionsList');
+        roleList.innerHTML = `
+            <p class="text-muted mb-2">These permissions are granted by the user's role: <strong>${getRoleDisplayName(user.role)}</strong></p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                ${rolePermissions.map(perm => `
+                    <span class="badge badge-info">${getPermissionDisplayName(perm)}</span>
+                `).join('')}
+            </div>
+        `;
+        
+        // Render custom permissions
+        const customList = document.getElementById('customPermissionsList');
+        if (data.customPermissions.length === 0) {
+            customList.innerHTML = '<p class="text-muted">No custom permissions assigned</p>';
+        } else {
+            customList.innerHTML = `
+                <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                    ${data.customPermissions.map(perm => `
+                        <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; background: var(--bg-secondary); border-radius: var(--radius-md);">
+                            <div>
+                                <strong>${getPermissionDisplayName(perm.permission)}</strong>
+                                <p class="text-muted" style="font-size: 0.875rem; margin: 0;">
+                                    Granted by ${escapeHtml(perm.granted_by_name)} on ${new Date(perm.granted_at).toLocaleDateString()}
+                                </p>
+                            </div>
+                            <button class="btn btn-danger btn-sm" onclick="revokePermission(${userId}, '${perm.permission}')">
+                                <i class="fas fa-times"></i>
+                                Revoke
+                            </button>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+        }
+    } catch (error) {
+        console.error('Error loading user permissions:', error);
+        showToast('Failed to load user permissions', 'error');

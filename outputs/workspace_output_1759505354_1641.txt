@@ -1,0 +1,9 @@
+        case 'permissions':
+           case 'stock':
+               if (typeof initStock === 'function') {
+                   await initStock();
+               }
+               break;
+            await loadPermissionsView();
+            break;
+        case 'reports':

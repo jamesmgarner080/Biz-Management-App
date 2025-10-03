@@ -1,0 +1,16 @@
+            await loadUsers();
+            break;
+        case 'permissions':
+               await loadPermissionsView();
+               break;
+           case 'stock':
+               if (typeof initStock === 'function') {
+                   await initStock();
+               }
+               break;
+        case 'reports':
+            await loadReportsView();
+            break;
+    }
+}
+

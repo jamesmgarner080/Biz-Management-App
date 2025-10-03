@@ -1,0 +1,87 @@
+            <div id="permissionsView" class="view-content hidden">
+                <div class="page-header">
+                    <h1 class="page-title">User Permissions</h1>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Manage User Permissions</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label">Select User</label>
+                            <select class="form-select" id="permissionUserId">
+                                <option value="">Select a user</option>
+                            </select>
+                        </div>
+                        
+                        <div id="permissionsContent" style="display: none;">
+                            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Role-Based Permissions</h3>
+                            <div id="rolePermissionsList" class="mb-3"></div>
+                            
+                            <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Custom Permissions</h3>
+                            <div id="customPermissionsList"></div>
+                            
+                            <button class="btn btn-primary mt-3" id="addPermissionBtn">
+                                <i class="fas fa-plus"></i>
+                                Add Custom Permission
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Settings View -->
+            <div id="settingsView" class="view-content hidden">
+                <div class="page-header">
+                    <h1 class="page-title">Settings</h1>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Appearance</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group">
+                            <label class="form-label">Theme</label>
+                            <div style="display: flex; gap: 1rem; align-items: center;">
+                                <button type="button" class="btn btn-secondary" id="lightModeBtn">
+                                    <i class="fas fa-sun"></i>
+                                    Light Mode
+                                </button>
+                                <button type="button" class="btn btn-secondary" id="darkModeBtn">
+                                    <i class="fas fa-moon"></i>
+                                    Dark Mode
+                                </button>
+                            </div>
+                            <p class="form-help mt-1">Choose your preferred theme. Your selection will be saved.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Change Password</h2>
+                    </div>
+                    <div class="card-body">
+                        <form id="changePasswordForm" style="max-width: 500px;">
+                            <div class="form-group">
+                                <label for="currentPassword" class="form-label required">Current Password</label>
+                                <input type="password" id="currentPassword" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="newPassword" class="form-label required">New Password</label>
+                                <input type="password" id="newPassword" class="form-input" required minlength="6">
+                                <p class="form-help">Password must be at least 6 characters</p>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirmPassword" class="form-label required">Confirm New Password</label>
+                                <input type="password" id="confirmPassword" class="form-input" required>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                Change Password
+                            </button>

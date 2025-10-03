@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('reportsNav').style.display = 'block';
            document.getElementById('stockNav').style.display = 'block';
         document.getElementById('usersNav').style.display = 'block';
-        document.getElementById('permissionsNav').style.display = 'none';
+        document.getElementById('permissionsNav').style.display = 'block';
     } else {
         // Other roles see limited features
         document.getElementById('allTasksNav').style.display = 'none';
@@ -330,13 +330,13 @@ async function loadCurrentView() {
             await loadUsers();
             break;
         case 'permissions':
+               await loadPermissionsView();
+               break;
            case 'stock':
                if (typeof initStock === 'function') {
                    await initStock();
                }
                break;
-            await loadPermissionsView();
-            break;
         case 'reports':
             await loadReportsView();
             break;

@@ -1,0 +1,16 @@
+    router.get('/active', authenticateToken, (req, res) => {
+        try {
+            const users = db.getActiveUsers();
+            res.json(users);
+        } catch (error) {
+            console.error('Get active users error:', error);
+            res.status(500).json({ error: 'Failed to get active users' });
+        }
+    });
+    
+    // Create new user (management only)
+    router.post('/', authenticateToken, requireManagement, async (req, res) => {
+        try {
+            const { username, password, role, full_name, email, phone } = req.body;
+            
+            // Validation

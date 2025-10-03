@@ -1,0 +1,8 @@
+273:    if (document.getElementById('permissionUserId')) {
+274:        document.getElementById('permissionUserId').addEventListener('change', loadUserPermissions);
+277:    if (document.getElementById('addPermissionBtn')) {
+278:        document.getElementById('addPermissionBtn').addEventListener('click', openAddPermissionModal);
+1052:        const select = document.getElementById('permissionUserId');
+1066:    const userId = document.getElementById('permissionUserId').value;
+1125:    const userId = document.getElementById('permissionUserId').value;
+1145:    const userId = document.getElementById('permissionUserId').value;

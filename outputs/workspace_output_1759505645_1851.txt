@@ -1,0 +1,11 @@
+    getActiveUsers() {
+        return this.db.prepare('SELECT id, username, role, full_name, email FROM users WHERE active = 1 ORDER BY full_name').all();
+    }
+    
+    createUser(userData) {
+        const stmt = this.db.prepare(`
+            INSERT INTO users (username, password_hash, role, full_name, email, phone)
+            VALUES (?, ?, ?, ?, ?, ?)
+        `);
+        return stmt.run(
+            userData.username,

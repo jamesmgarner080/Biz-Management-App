@@ -1,0 +1,1 @@
+{'role': 'user', 'content': '1. Ability to acsess all features in portrait mode.\n2. Ability to add users/staff. \nCleaner, Bar Staff Supervisor, Manager. \n3. Ability for admin to assign features to users. \n4. Generate reports, based on individual selection. Tasks, User, etc. \n'}

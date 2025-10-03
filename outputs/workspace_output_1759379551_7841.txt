@@ -1,0 +1,60 @@
+            });
+            
+            // Update permissions if admin
+            if (currentUser.role === 'admin') {
+                // Get current custom permissions
+                const permData = await apiRequest(`/permissions/user/${userId}`);
+                const currentCustomPerms = permData.customPermissions.map(p => p.permission);
+                
+                // Revoke permissions that were unchecked
+                const toRevoke = currentCustomPerms.filter(p => !selectedPermissions.includes(p));
+                for (const perm of toRevoke) {
+                    await apiRequest('/permissions/revoke', {
+                        method: 'POST',
+                        body: JSON.stringify({ userId: parseInt(userId), permission: perm })
+                    });
+                }
+                
+                // Grant new permissions
+                const toGrant = selectedPermissions.filter(p => !currentCustomPerms.includes(p));
+                for (const perm of toGrant) {
+                    await apiRequest('/permissions/grant', {
+                        method: 'POST',
+                        body: JSON.stringify({ userId: parseInt(userId), permission: perm })
+                    });
+                }
+            }
+            
+            showToast('User updated successfully', 'success');
+        } else {
+            // Create new user
+            const result = await apiRequest('/users', {
+                method: 'POST',
+                body: JSON.stringify(userData)
+            });
+            
+            newUserId = result.userId;
+            
+            // Grant custom permissions if admin and permissions selected
+            if (currentUser.role === 'admin' && selectedPermissions.length > 0) {
+                await apiRequest('/permissions/bulk-grant', {
+                    method: 'POST',
+                    body: JSON.stringify({ 
+                        userId: newUserId, 
+                        permissions: selectedPermissions 
+                    })
+                });
+            }
+            
+            showToast('User created successfully', 'success');
+        }
+        
+        closeUserModal();
+        loadUsers();
+    } catch (error) {
+        console.error('Error saving user:', error);
+        showToast(error.message || 'Failed to save user', 'error');
+    } finally {
+        const saveBtn = document.getElementById('saveUserBtn');
+        saveBtn.disabled = false;
+        saveBtn.innerHTML = '<i class="fas fa-save"></i> Save User';

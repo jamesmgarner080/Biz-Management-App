@@ -1,0 +1,1 @@
+{'role': 'assistant', 'content': '<function_calls>\n<execute-command>\nsqlite3 database/business_management.db "SELECT username, password_hash FROM users WHERE username = \'admin\';"\n</execute-command>\n</function_calls>'}

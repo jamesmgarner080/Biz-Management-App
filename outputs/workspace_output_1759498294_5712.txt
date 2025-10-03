@@ -1,0 +1,9 @@
+                            <span>Reports</span>$
+                        </a>$
+                    </li>$
+                    <li class="nav-item" id="usersNav">$
+                        <a href="#" class="nav-link" data-view="users">$
+                            <i class="fas fa-users"></i>$
+                            <span>Users</span>$
+                        </a>$
+                    </li>$

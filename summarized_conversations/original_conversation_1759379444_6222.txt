@@ -1,0 +1,1 @@
+{'role': 'assistant', 'content': 'Perfect! Database initialized successfully. Now let me start the server:\n\n<function_calls>\n<execute-command>\ntmux new-session -d -s app "cd /workspace && npm start"\n</execute-command>\n</function_calls>'}

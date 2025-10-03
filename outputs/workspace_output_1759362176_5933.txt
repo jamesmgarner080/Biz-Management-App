@@ -1,0 +1,1 @@
+{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJtYW5hZ2VtZW50IiwiZnVsbF9uYW1lIjoiU3lzdGVtIEFkbWluaXN0cmF0b3IiLCJpYXQiOjE3NTkzNjIxNzYsImV4cCI6MTc1OTQ0ODU3Nn0.nw_E-P8a0KaGpBTKj_mzJ4hkc_PgZj8hqfgHwBVxkSo","user":{"id":1,"username":"admin","role":"management","full_name":"System Administrator","email":"admin@example.com"}}

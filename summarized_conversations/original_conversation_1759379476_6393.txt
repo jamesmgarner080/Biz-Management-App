@@ -1,0 +1,1 @@
+{'role': 'assistant', 'content': 'The database has the old constraint. Let me recreate the database with the new schema:\n\n<function_calls>\n<execute-command>\nrm database/business_management.db && npm run init-db\n</execute-command>\n</function_calls>'}

@@ -1,0 +1,2 @@
+Password: password123
+Hash: $2b$10$sZ0ml5ADv1cso23C38zvC.f0eYFViA6sm56oscb0yeQgxB.AvWShG

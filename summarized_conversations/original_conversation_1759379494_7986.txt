@@ -1,0 +1,1 @@
+{'role': 'assistant', 'content': "The server isn't running. Let me check the logs:\n\n<function_calls>\n<execute-command>\ntmux capture-pane -pt app -S -50\n</execute-command>\n</function_calls>"}

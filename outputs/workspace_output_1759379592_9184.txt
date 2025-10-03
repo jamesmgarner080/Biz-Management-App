@@ -1,0 +1,81 @@
+async function openUserModal(userId = null) {
+    const modal = document.getElementById('userModal');
+    const modalTitle = document.getElementById('userModalTitle');
+    const form = document.getElementById('userForm');
+    const passwordGroup = document.getElementById('passwordGroup');
+    const customPermissionsGroup = document.getElementById('customPermissionsGroup');
+    
+    // Reset form
+    form.reset();
+    document.getElementById('userId').value = '';
+    
+    // Load available permissions for admin
+    if (currentUser.role === 'admin') {
+        try {
+            const permissions = await apiRequest('/permissions/available');
+            const checkboxContainer = document.getElementById('permissionCheckboxes');
+            checkboxContainer.innerHTML = permissions.map(p => `
+                <label style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; cursor: pointer;">
+                    <input type="checkbox" name="permission" value="${p.permission}" class="permission-checkbox">
+                    <span>${getPermissionDisplayName(p.permission)}</span>
+                </label>
+            `).join('');
+            customPermissionsGroup.style.display = 'block';
+        } catch (error) {
+            console.error('Error loading permissions:', error);
+        }
+    } else {
+        customPermissionsGroup.style.display = 'none';
+    }
+    
+    if (userId) {
+        // Edit mode
+        modalTitle.textContent = 'Edit User';
+        passwordGroup.style.display = 'none';
+        document.getElementById('userPassword').required = false;
+        
+        // Load user data
+        try {
+            const user = await apiRequest(`/users/${userId}`);
+            document.getElementById('userId').value = user.id;
+            document.getElementById('userUsername').value = user.username;
+            document.getElementById('userFullName').value = user.full_name;
+            document.getElementById('userEmail').value = user.email || '';
+            document.getElementById('userPhone').value = user.phone || '';
+            document.getElementById('userRole').value = user.role;
+            
+            // Load user's custom permissions
+            if (currentUser.role === 'admin') {
+                const permData = await apiRequest(`/permissions/user/${userId}`);
+                const customPerms = permData.customPermissions.map(p => p.permission);
+                
+                // Check the boxes for custom permissions
+                document.querySelectorAll('.permission-checkbox').forEach(checkbox => {
+                    checkbox.checked = customPerms.includes(checkbox.value);
+                });
+            }
+        } catch (error) {
+            console.error('Error loading user:', error);
+            showToast('Failed to load user', 'error');
+        }
+    } else {
+        // Create mode
+        modalTitle.textContent = 'Create User';
+        passwordGroup.style.display = 'block';
+        document.getElementById('userPassword').required = true;
+    }
+    
+    modal.classList.remove('hidden');
+}
+
+function closeUserModal() {
+    document.getElementById('userModal').classList.add('hidden');
+}
+
+async function saveUser() {
+    const form = document.getElementById('userForm');
+    
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }

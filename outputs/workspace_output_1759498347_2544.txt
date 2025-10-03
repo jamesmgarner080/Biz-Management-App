@@ -1,0 +1,5 @@
+113:            <div id="dashboardView" class="view-content">
+184:            <div id="tasksView" class="view-content hidden">
+258:            <div id="allTasksView" class="view-content hidden">
+285:            <div id="scheduleView" class="view-content hidden">
+306:            <div id="notificationsView" class="view-content hidden">

@@ -1,0 +1,239 @@
+<!-- Stock Item Modal -->
+    <div id="stockItemModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 700px;">
+            <div class="modal-header">
+                <h3 id="stockItemModalTitle">Add Stock Item</h3>
+                <button class="modal-close" id="closeStockItemModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="stockItemForm">
+                    <input type="hidden" id="stockItemId">
+                    
+                    <div class="form-row">
+                        <div class="form-group" style="flex: 2;">
+                            <label for="stockItemName" class="form-label required">Item Name</label>
+                            <input type="text" id="stockItemName" class="form-input" required>
+                        </div>
+                        <div class="form-group" style="flex: 1;">
+                            <label for="stockItemSKU" class="form-label">SKU</label>
+                            <input type="text" id="stockItemSKU" class="form-input">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="stockItemCategory" class="form-label required">Category</label>
+                            <select id="stockItemCategory" class="form-select" required>
+                                <option value="">Select category</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="stockItemUnit" class="form-label required">Unit</label>
+                            <select id="stockItemUnit" class="form-select" required>
+                                <option value="">Select unit</option>
+                                <option value="bottles">Bottles</option>
+                                <option value="cases">Cases</option>
+                                <option value="kegs">Kegs</option>
+                                <option value="kg">Kilograms</option>
+                                <option value="liters">Liters</option>
+                                <option value="boxes">Boxes</option>
+                                <option value="packs">Packs</option>
+                                <option value="jars">Jars</option>
+                                <option value="bunches">Bunches</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stockItemSupplier" class="form-label">Supplier</label>
+                        <input type="text" id="stockItemSupplier" class="form-input">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="stockItemMinQty" class="form-label">Minimum Quantity</label>
+                            <input type="number" id="stockItemMinQty" class="form-input" step="0.01" min="0" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="stockItemMaxQty" class="form-label">Maximum Quantity</label>
+                            <input type="number" id="stockItemMaxQty" class="form-input" step="0.01" min="0" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label for="stockItemUnitCost" class="form-label">Unit Cost ($)</label>
+                            <input type="number" id="stockItemUnitCost" class="form-input" step="0.01" min="0" value="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="stockItemNotes" class="form-label">Notes</label>
+                        <textarea id="stockItemNotes" class="form-textarea" rows="3"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelStockItemBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveStockItemBtn">
+                    <i class="fas fa-save"></i> Save Item
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delivery Modal -->
+    <div id="deliveryModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 900px;">
+            <div class="modal-header">
+                <h3 id="deliveryModalTitle">New Delivery</h3>
+                <button class="modal-close" id="closeDeliveryModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="deliveryForm">
+                    <input type="hidden" id="deliveryId">
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="deliveryDate" class="form-label required">Delivery Date</label>
+                            <input type="date" id="deliveryDate" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="deliverySupplier" class="form-label required">Supplier</label>
+                            <input type="text" id="deliverySupplier" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="deliveryInvoiceNumber" class="form-label">Invoice Number</label>
+                            <input type="text" id="deliveryInvoiceNumber" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <label for="deliveryInvoiceAmount" class="form-label">Invoice Amount ($)</label>
+                            <input type="number" id="deliveryInvoiceAmount" class="form-input" step="0.01" min="0">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deliveryNotes" class="form-label">Notes</label>
+                        <textarea id="deliveryNotes" class="form-textarea" rows="2"></textarea>
+                    </div>
+
+                    <hr style="margin: 1.5rem 0;">
+
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h4>Delivery Items</h4>
+                        <button type="button" class="btn btn-secondary btn-sm" id="addDeliveryItemBtn">
+                            <i class="fas fa-plus"></i> Add Item
+                        </button>
+                    </div>
+
+                    <div id="deliveryItemsList">
+                        <!-- Delivery items will be added here dynamically -->
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelDeliveryBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveDeliveryBtn">
+                    <i class="fas fa-save"></i> Save Delivery
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Accept Delivery Modal -->
+    <div id="acceptDeliveryModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 900px;">
+            <div class="modal-header">
+                <h3>Accept Delivery</h3>
+                <button class="modal-close" id="closeAcceptDeliveryModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="acceptDeliveryInfo" style="background: var(--background-secondary); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+                    <!-- Delivery info will be populated here -->
+                </div>
+
+                <h4 style="margin-bottom: 1rem;">Verify Items</h4>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    Check each item and enter the actual received quantity. Mark any damaged items.
+                </p>
+
+                <div id="acceptDeliveryItemsList">
+                    <!-- Items will be populated here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelAcceptDeliveryBtn">Cancel</button>
+                <button class="btn btn-danger" id="rejectDeliveryBtn">
+                    <i class="fas fa-times"></i> Reject Delivery
+                </button>
+                <button class="btn btn-success" id="confirmAcceptDeliveryBtn">
+                    <i class="fas fa-check"></i> Accept Delivery
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Stock Adjustment Modal -->
+    <div id="stockAdjustmentModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 500px;">
+            <div class="modal-header">
+                <h3>Adjust Stock</h3>
+                <button class="modal-close" id="closeStockAdjustmentModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="stockAdjustmentForm">
+                    <input type="hidden" id="adjustmentStockItemId">
+                    
+                    <div id="adjustmentItemInfo" style="background: var(--background-secondary); padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+                        <!-- Item info will be populated here -->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adjustmentType" class="form-label required">Adjustment Type</label>
+                        <select id="adjustmentType" class="form-select" required>
+                            <option value="adjustment">Manual Adjustment</option>
+                            <option value="usage">Usage</option>
+                            <option value="waste">Waste/Spoilage</option>
+                            <option value="return">Return to Supplier</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adjustmentQuantity" class="form-label required">Quantity Change</label>
+                        <input type="number" id="adjustmentQuantity" class="form-input" step="0.01" required>
+                        <p class="form-help">Enter positive number to add, negative to subtract</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adjustmentReason" class="form-label required">Reason</label>
+                        <textarea id="adjustmentReason" class="form-textarea" rows="3" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelAdjustmentBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveAdjustmentBtn">
+                    <i class="fas fa-save"></i> Save Adjustment
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- View Stock Details Modal -->
+    <div id="stockDetailsModal" class="modal-overlay hidden">
+        <div class="modal-content" style="max-width: 800px;">
+            <div class="modal-header">
+                <h3 id="stockDetailsTitle">Stock Details</h3>
+                <button class="modal-close" id="closeStockDetailsModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="stockDetailsContent">
+                    <!-- Details will be populated here -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="closeStockDetailsBtn">Close</button>
+            </div>
+        </div>
+    </div>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>

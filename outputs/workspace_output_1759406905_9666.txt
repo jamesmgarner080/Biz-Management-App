@@ -1,0 +1,13 @@
+CREATE TABLE shift_schedules (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    shift_date DATE NOT NULL,
+    shift_start TIME NOT NULL,
+    shift_end TIME NOT NULL,
+    role TEXT, -- 'bartender', 'server', 'manager', etc.
+    notes TEXT,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+CREATE INDEX idx_shift_schedules_date ON shift_schedules(shift_date);
+CREATE INDEX idx_shift_schedules_user ON shift_schedules(user_id);

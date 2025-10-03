@@ -1,0 +1,26 @@
+    const adminOnly = ['admin'];
+    
+    // Admin sees everything - no restrictions
+    if (currentUser.role === 'admin') {
+        // Admin has access to all features - show everything
+        document.getElementById('allTasksNav').style.display = 'block';
+        document.getElementById('reportsNav').style.display = 'block';
+        document.getElementById('usersNav').style.display = 'block';
+        document.getElementById('permissionsNav').style.display = 'block';
+    } else if (managementRoles.includes(currentUser.role)) {
+        // Managers see most features except permissions
+        document.getElementById('allTasksNav').style.display = 'block';
+        document.getElementById('reportsNav').style.display = 'block';
+        document.getElementById('usersNav').style.display = 'block';
+        document.getElementById('permissionsNav').style.display = 'none';
+    } else {
+        // Other roles see limited features
+        document.getElementById('allTasksNav').style.display = 'none';
+        document.getElementById('reportsNav').style.display = 'none';
+        document.getElementById('usersNav').style.display = 'none';
+        document.getElementById('permissionsNav').style.display = 'none';
+    }
+    
+    // Initialize Socket.io
+    initializeSocket();
+    

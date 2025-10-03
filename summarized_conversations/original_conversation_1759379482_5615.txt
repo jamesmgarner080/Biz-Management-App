@@ -1,0 +1,1 @@
+{'role': 'assistant', 'content': 'Now let\'s restart the server with all the new features:\n\n<function_calls>\n<execute-command>\ntmux kill-session -t app && sleep 2 && tmux new-session -d -s app "cd /workspace && npm start"\n</execute-command>\n</function_calls>'}

@@ -1,0 +1,51 @@
+
+// Load current view data
+async function loadCurrentView() {
+    switch (currentView) {
+        case 'dashboard':
+            await loadDashboard();
+            break;
+        case 'tasks':
+            await loadMyTasks();
+            break;
+        case 'all-tasks':
+            await loadAllTasks();
+            break;
+        case 'notifications':
+            await loadNotifications();
+            break;
+        case 'users':
+            await loadUsers();
+            break;
+        case 'permissions':
+            await loadPermissionsView();
+            break;
+        case 'reports':
+            await loadReportsView();
+            break;
+    }
+}
+
+// Load dashboard
+async function loadDashboard() {
+    try {
+        // Load statistics
+        const tasks = await apiRequest('/tasks');
+        
+        const total = tasks.length;
+        const completed = tasks.filter(t => t.status === 'completed').length;
+        const pending = tasks.filter(t => t.status === 'pending').length;
+        const overdue = tasks.filter(t => t.status === 'overdue').length;
+        
+        document.getElementById('totalTasks').textContent = total;
+        document.getElementById('completedTasks').textContent = completed;
+        document.getElementById('pendingTasks').textContent = pending;
+        document.getElementById('overdueTasks').textContent = overdue;
+        
+        // Update task badge
+        const activeTasks = pending + overdue;
+        const taskBadge = document.getElementById('taskBadge');
+        if (activeTasks > 0) {
+            taskBadge.textContent = activeTasks;
+            taskBadge.classList.remove('hidden');
+        } else {

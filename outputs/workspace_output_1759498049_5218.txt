@@ -1,0 +1,50 @@
+        // Combine and deduplicate
+        return [...new Set([...rolePermissions, ...userPermissions])];
+    }
+    
+    hasPermission(userId, permission) {
+        const permissions = this.getUserPermissions(userId);
+        return permissions.includes(permission);
+    }
+    
+    grantPermission(userId, permission, grantedBy) {
+        const stmt = this.db.prepare(`
+            INSERT OR IGNORE INTO user_permissions (user_id, permission, granted_by)
+            VALUES (?, ?, ?)
+        `);
+        return stmt.run(userId, permission, grantedBy);
+    }
+    
+    revokePermission(userId, permission) {
+        return this.db.prepare(`
+            DELETE FROM user_permissions WHERE user_id = ? AND permission = ?
+        `).run(userId, permission);
+    }
+    
+    getAllPermissions() {
+        return this.db.prepare(`
+            SELECT DISTINCT permission FROM role_permissions ORDER BY permission
+        `).all();
+    }
+    
+    getRolePermissions(role) {
+        return this.db.prepare(`
+            SELECT permission FROM role_permissions WHERE role = ?
+        `).all(role).map(p => p.permission);
+    }
+    
+    getUserCustomPermissions(userId) {
+        return this.db.prepare(`
+            SELECT up.*, u.full_name as granted_by_name
+            FROM user_permissions up
+            LEFT JOIN users u ON up.granted_by = u.id
+            WHERE up.user_id = ?
+        `).all(userId);
+    }
+    
+    close() {
+        this.db.close();
+    }
+}
+
+module.exports = DatabaseManager;

@@ -1,0 +1,1 @@
+{'role': 'assistant', 'content': 'The admin user exists. Let me check the password hash and recreate it properly:\n\n<function_calls>\n<execute-command>\nnode -e "const bcrypt = require(\'bcrypt\'); bcrypt.hash(\'admin123\', 10, (err, hash) => console.log(hash));"\n</execute-command>\n</function_calls>'}

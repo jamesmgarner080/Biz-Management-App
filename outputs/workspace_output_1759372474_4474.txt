@@ -1,0 +1,25 @@
+
+> business-management-app@1.0.0 init-db
+> node backend/init-database.js
+
+=================================
+Database Initialization Script
+=================================
+
+Initializing database...
+Database initialized successfully
+Permissions initialized successfully
+
+✓ Database initialized successfully!
+
+Default admin credentials:
+  Username: admin
+  Password: admin123 (or the password set in .env)
+
+⚠️  IMPORTANT: Change the default password after first login!
+
+Database location: ./database/business_management.db
+
+You can now start the server with: npm start
+=================================
+

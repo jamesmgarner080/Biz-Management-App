@@ -1,0 +1,5 @@
+85:app.use('/api/tasks', createTaskRoutes(db, io));
+86:app.use('/api/notifications', createNotificationRoutes(db, io));
+87:app.use('/api/schedules', createScheduleRoutes(db, io));
+88:app.use('/api/templates', createTemplateRoutes(db));
+89:app.use('/api/permissions', createPermissionRoutes(db));

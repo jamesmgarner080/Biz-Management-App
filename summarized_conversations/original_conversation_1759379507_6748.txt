@@ -1,0 +1,1 @@
+{'role': 'assistant', 'content': '<function_calls>\n<execute-command>\npkill -f "node backend/server.js" && sleep 2 && tmux new-session -d -s app "cd /workspace && npm start"\n</execute-command>\n</function_calls>'}

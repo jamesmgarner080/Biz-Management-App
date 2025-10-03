@@ -1,0 +1,6 @@
+stock_categories
+stock_items
+stock_deliveries
+stock_batches
+stock_transactions
+stock_alerts

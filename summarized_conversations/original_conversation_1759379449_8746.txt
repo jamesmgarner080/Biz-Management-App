@@ -1,0 +1,1 @@
+{'role': 'assistant', 'content': 'Let me install sqlite3 and check the database:\n\n<function_calls>\n<execute-command>\napt-get update && apt-get install -y sqlite3\n</execute-command>\n</function_calls>'}

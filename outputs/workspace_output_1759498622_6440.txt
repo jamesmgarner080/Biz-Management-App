@@ -1,0 +1,35 @@
+function switchView(view) {
+    currentView = view;
+    
+    // Hide all views
+    document.querySelectorAll('.view-content').forEach(v => v.classList.add('hidden'));
+    
+    // Remove active class from all nav links
+    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+    
+    // Show selected view
+    const viewElement = document.getElementById(`${view}View`);
+    if (viewElement) {
+        viewElement.classList.remove('hidden');
+    }
+    
+    // Add active class to current nav link
+    const activeLink = document.querySelector(`.nav-link[data-view="${view}"]`);
+    if (activeLink) {
+        activeLink.classList.add('active');
+    }
+    
+    // Load view data
+    loadCurrentView();
+}
+
+// Load current view data
+async function loadCurrentView() {
+    switch (currentView) {
+        case 'dashboard':
+            await loadDashboard();
+            break;
+        case 'tasks':
+            await loadMyTasks();
+            break;
+        case 'all-tasks':

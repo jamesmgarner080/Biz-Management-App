@@ -1,0 +1,36 @@
+Hit:1 http://deb.debian.org/debian bookworm InRelease
+Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+Get:4 https://deb.nodesource.com/node_20.x nodistro InRelease [12.1 kB]
+Get:5 https://cli.github.com/packages stable InRelease [3917 B]
+Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [280 kB]
+Get:7 https://deb.nodesource.com/node_20.x nodistro/main amd64 Packages [12.8 kB]
+Get:8 https://cli.github.com/packages stable/main amd64 Packages [347 B]
+Fetched 413 kB in 1s (502 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+The following additional packages will be installed:
+  libsqlite3-0
+Suggested packages:
+  sqlite3-doc
+The following NEW packages will be installed:
+  sqlite3
+The following packages will be upgraded:
+  libsqlite3-0
+1 upgraded, 1 newly installed, 0 to remove and 21 not upgraded.
+Need to get 1192 kB of archives.
+After this operation, 546 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian bookworm/main amd64 libsqlite3-0 amd64 3.40.1-2+deb12u2 [839 kB]
+Get:2 http://deb.debian.org/debian bookworm/main amd64 sqlite3 amd64 3.40.1-2+deb12u2 [353 kB]
+Fetched 1192 kB in 0s (23.8 MB/s)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 52526 files and directories currently installed.)
+Preparing to unpack .../libsqlite3-0_3.40.1-2+deb12u2_amd64.deb ...
+Unpacking libsqlite3-0:amd64 (3.40.1-2+deb12u2) over (3.40.1-2+deb12u1) ...
+Selecting previously unselected package sqlite3.
+Preparing to unpack .../sqlite3_3.40.1-2+deb12u2_amd64.deb ...
+Unpacking sqlite3 (3.40.1-2+deb12u2) ...
+Setting up libsqlite3-0:amd64 (3.40.1-2+deb12u2) ...
+Setting up sqlite3 (3.40.1-2+deb12u2) ...
+Processing triggers for libc-bin (2.36-9+deb12u10) ...

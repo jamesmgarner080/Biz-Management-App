@@ -1,0 +1,1 @@
+{'role': 'assistant', 'content': 'Excellent! The server is running successfully. Now let me expose the port so you can access the application:\n\n<function_calls>\n<expose-port>\n3000\n</expose-port>\n</function_calls>'}

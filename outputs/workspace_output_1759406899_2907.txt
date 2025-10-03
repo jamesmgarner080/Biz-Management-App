@@ -1,0 +1,50 @@
+CREATE TABLE tasks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    description TEXT,
+    category TEXT NOT NULL CHECK(category IN (
+        'Daily Bar Duties',
+        'Staff Training',
+        'Management Duties',
+        'Maintenance',
+        'Cleaning',
+        'Inventory',
+        'Customer Service',
+        'Other'
+    )),
+    priority TEXT NOT NULL CHECK(priority IN ('High', 'Medium', 'Low')),
+    
+    -- Assignment type: 'individual' or 'shift-based'
+    assignment_type TEXT NOT NULL CHECK(assignment_type IN ('individual', 'shift-based')),
+    
+    -- For individual assignments: specific user ID
+    assigned_to INTEGER,
+    
+    -- For shift-based assignments: the date when any on-duty staff must complete
+    assigned_date DATE,
+    
+    due_date DATETIME,
+    due_time TIME,
+    
+    -- Status: 'pending', 'in-progress', 'completed', 'overdue'
+    status TEXT DEFAULT 'pending' CHECK(status IN ('pending', 'in-progress', 'completed', 'overdue')),
+    
+    -- Recurrence: 'none', 'daily', 'weekly', 'monthly'
+    recurrence TEXT DEFAULT 'none' CHECK(recurrence IN ('none', 'daily', 'weekly', 'monthly')),
+    
+    created_by INTEGER NOT NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    
+    completed_at DATETIME,
+    completed_by INTEGER,
+    completion_notes TEXT,
+    completion_photo TEXT, -- Path to uploaded photo
+    
+    FOREIGN KEY (assigned_to) REFERENCES users(id),
+    FOREIGN KEY (created_by) REFERENCES users(id),
+    FOREIGN KEY (completed_by) REFERENCES users(id)
+);
+CREATE INDEX idx_tasks_assigned_to ON tasks(assigned_to);
+CREATE INDEX idx_tasks_assigned_date ON tasks(assigned_date);
+CREATE INDEX idx_tasks_status ON tasks(status);
+CREATE INDEX idx_tasks_due_date ON tasks(due_date);

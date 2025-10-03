@@ -1,0 +1,51 @@
+async function saveUser() {
+    const form = document.getElementById('userForm');
+    
+    if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+    }
+    
+    const userId = document.getElementById('userId').value;
+    const userData = {
+        username: document.getElementById('userUsername').value,
+        full_name: document.getElementById('userFullName').value,
+        email: document.getElementById('userEmail').value,
+        phone: document.getElementById('userPhone').value,
+        role: document.getElementById('userRole').value
+    };
+    
+    if (!userId) {
+        userData.password = document.getElementById('userPassword').value;
+    }
+    
+    // Get selected custom permissions (admin only)
+    const selectedPermissions = [];
+    if (currentUser.role === 'admin') {
+        document.querySelectorAll('.permission-checkbox:checked').forEach(checkbox => {
+            selectedPermissions.push(checkbox.value);
+        });
+    }
+    
+    try {
+        const saveBtn = document.getElementById('saveUserBtn');
+        saveBtn.disabled = true;
+        saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+        
+        let newUserId = userId;
+        
+        if (userId) {
+            // Update existing user
+            await apiRequest(`/users/${userId}`, {
+                method: 'PUT',
+                body: JSON.stringify(userData)
+            });
+            
+            // Update permissions if admin
+            if (currentUser.role === 'admin') {
+                // Get current custom permissions
+                const permData = await apiRequest(`/permissions/user/${userId}`);
+                const currentCustomPerms = permData.customPermissions.map(p => p.permission);
+                
+                // Revoke permissions that were unchecked
+                const toRevoke = currentCustomPerms.filter(p => !selectedPermissions.includes(p));

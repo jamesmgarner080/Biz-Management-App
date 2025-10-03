@@ -1,0 +1,1 @@
+{'role': 'assistant', 'content': 'I see the issue - the database still has the old constraint. Let me fix the existing admin user\'s role:\n\n<function_calls>\n<execute-command>\nsqlite3 database/business_management.db "UPDATE users SET role = \'admin\' WHERE username = \'admin\';"\n</execute-command>\n</function_calls>'}

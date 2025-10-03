@@ -1,0 +1,64 @@
+                    <span class="user-role" id="userRole">Loading...</span>
+                </div>
+            </div>
+            
+            <nav>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" data-view="dashboard">
+                            <i class="fas fa-home"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-view="tasks">
+                            <i class="fas fa-tasks"></i>
+                            <span>My Tasks</span>
+                            <span class="notification-badge hidden" id="taskBadge">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item" id="allTasksNav">
+                        <a href="#" class="nav-link" data-view="all-tasks">
+                            <i class="fas fa-list-check"></i>
+                            <span>All Tasks</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link" data-view="schedule">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Schedule</span>
+                        </a>
+                    </li>
+--
+                        <label for="userRole" class="form-label required">Role</label>
+                        <select id="userRole" class="form-select" required>
+                            <option value="">Select role</option>
+                            <option value="admin">Admin</option>
+                            <option value="manager">Manager</option>
+                            <option value="supervisor">Supervisor</option>
+                            <option value="bar_staff">Bar Staff</option>
+                            <option value="cleaner">Cleaner</option>
+                            <option value="employee">Employee</option>
+                        </select>
+                        <p class="form-help">
+                            <strong>Admin:</strong> Full system access<br>
+                            <strong>Manager:</strong> Manage tasks, users, schedules, reports<br>
+                            <strong>Supervisor:</strong> Create tasks, view reports<br>
+                            <strong>Bar Staff:</strong> View and complete assigned tasks<br>
+                            <strong>Cleaner:</strong> View and complete assigned tasks<br>
+                            <strong>Employee:</strong> Basic task access
+                        </p>
+                    </div>
+                    
+                    <div class="form-group" id="customPermissionsGroup" style="display: none;">
+                        <label class="form-label">Custom Permissions (Optional)</label>
+                        <p class="form-help mb-2">Select additional permissions beyond the role defaults:</p>
+                        <div id="permissionCheckboxes" style="max-height: 200px; overflow-y: auto; border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem;">
+                            <!-- Permission checkboxes will be loaded here -->
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelUserBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveUserBtn">

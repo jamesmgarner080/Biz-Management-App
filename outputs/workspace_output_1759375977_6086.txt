@@ -1,0 +1,3 @@
+155:    document.getElementById('createTaskBtn').addEventListener('click', () => openTaskModal());
+156:    if (document.getElementById('createTaskBtn2')) {
+157:        document.getElementById('createTaskBtn2').addEventListener('click', () => openTaskModal());

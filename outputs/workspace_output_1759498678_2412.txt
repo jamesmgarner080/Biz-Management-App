@@ -1,0 +1,3 @@
+30:        document.getElementById('allTasksNav').style.display = 'block';
+36:        document.getElementById('allTasksNav').style.display = 'block';
+42:        document.getElementById('allTasksNav').style.display = 'none';

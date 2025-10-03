@@ -1,0 +1,26 @@
+$
+// Load current view data$
+async function loadCurrentView() {$
+    switch (currentView) {$
+        case 'dashboard':$
+            await loadDashboard();$
+            break;$
+        case 'tasks':$
+            await loadMyTasks();$
+            break;$
+        case 'all-tasks':$
+            await loadAllTasks();$
+            break;$
+        case 'notifications':$
+            await loadNotifications();$
+            break;$
+        case 'users':$
+            await loadUsers();$
+            break;$
+        case 'permissions':$
+            await loadPermissionsView();$
+            break;$
+        case 'reports':$
+            await loadReportsView();$
+            break;$
+    }$

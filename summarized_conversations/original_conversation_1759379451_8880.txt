@@ -1,0 +1,1 @@
+{'role': 'assistant', 'content': '<function_calls>\n<execute-command>\nsqlite3 database/business_management.db "UPDATE users SET password_hash = \'\\$2b\\$10\\$eSYFwau4S3jTCLfNY8SV/eDnM0OvOEQZ3V7e2Gly2PgqOfR7UaTdm\' WHERE username = \'admin\';"\n</execute-command>\n</function_calls>'}

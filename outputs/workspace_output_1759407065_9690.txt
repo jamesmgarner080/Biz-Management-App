@@ -1,0 +1,16 @@
+admin|admin|System Administrator
+Kerry|bar_staff|Kerry Young
+alex.bartender|bar_staff|Alex Martinez
+emma.bartender|bar_staff|Emma Davis
+rachel.bartender|bar_staff|Rachel Kim
+tom.bartender|bar_staff|Tom Anderson
+john.cleaner|cleaner|John Wilson
+maria.cleaner|cleaner|Maria Garcia
+sofia.cleaner|cleaner|Sofia Lopez
+chris.staff|employee|Chris Taylor
+david.staff|employee|David Brown
+nina.staff|employee|Nina Patel
+james.manager|manager|James Rodriguez
+sarah.manager|manager|Sarah Mitchell
+lisa.super|supervisor|Lisa Chen
+mike.super|supervisor|Mike Thompson

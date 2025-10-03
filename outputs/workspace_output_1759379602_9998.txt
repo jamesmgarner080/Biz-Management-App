@@ -1,0 +1,3 @@
+frontend/js/app.js:    document.getElementById('userRole').textContent = currentUser.role;
+frontend/js/app.js:            document.getElementById('userRole').value = user.role;
+frontend/js/app.js:        role: document.getElementById('userRole').value
